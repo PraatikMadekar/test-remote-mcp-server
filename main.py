@@ -2,9 +2,6 @@ from fastmcp import FastMCP
 import os
 import aiosqlite  # Changed: sqlite3 → aiosqlite
 import tempfile
-
-from flask import app
-import uv
 # Use temporary directory which should be writable
 TEMP_DIR = tempfile.gettempdir()
 DB_PATH = os.path.join(TEMP_DIR, "expenses.db")
@@ -131,5 +128,5 @@ def categories():
 
 # Start the server
 if __name__ == "__main__":
-    uv.run(app, host="0.0.0.0", port=int(os.environ["PORT"]))
+    mcp.run(transport="http", host="0.0.0.0", port=8001)
     # mcp.run()
